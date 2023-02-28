@@ -1,0 +1,139 @@
+<template>
+  <div class="row">
+    <div class="col-lg-8">
+      <h1>Thành viên</h1>
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">ID</th>
+            <th scope="col">Email</th>
+            <th scope="col">Fullname</th>
+            <th scope="col">Gender</th>
+            <th scope="col">Khoá</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="(member, index) in members" :key="index">
+            <th scope="row">{{ index + 1 }}</th>
+            <td>{{ member.USERID }}</td>
+            <td>{{ member.email }}</td>
+            <td>{{ member.fullname }}</td>
+            <td>{{ member.gender }}</td>
+            <td>
+              <input
+                type="checkbox"
+                v-model="member.active"
+                @change="toggle(member.USERID)"
+              />
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <nav aria-label="Page navigation example">
+        <ul class="pagination">
+          <li
+            class="page-item"
+            :class="{
+              active: paging.currPage === page
+            }"
+            v-for="(page, index) in totalPages"
+            :key="index"
+            @click="getMembers(page)"
+          >
+            <a class="page-link" href="#">{{ page }}</a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+</template>
+
+<script>
+import { CONFIG_ACCESS_TOKEN } from "../../constants";
+import axiosInstance from "../../plugins/axios";
+
+export default {
+  name: "AdminMembers",
+  data() {
+    return {
+      paging: {
+        pagesize: 5,
+        currPage: 1
+      },
+      totalMembers: 0,
+      members: [],
+      fetching: false
+    };
+  },
+  computed: {
+    totalPages() {
+      return Math.ceil(this.totalMembers / this.paging.pagesize);
+    }
+  },
+  methods: {
+    async getMembers(page = 1) {
+      if (this.fetching) return;
+
+      this.fetching = true;
+
+      this.paging.currPage = page;
+
+      const config = {
+        params: this.paging,
+        headers: {
+          Authorization: "Bearer " + localStorage.getItem(CONFIG_ACCESS_TOKEN)
+        }
+      };
+
+      try {
+        const response = await axiosInstance.get(
+          "/member/getListPaging.php",
+          config
+        );
+        const {
+          body: { total, users }
+        } = response.data;
+
+        this.totalMembers = total;
+        this.paging.currPage = page;
+        this.members = users.map(user => {
+          user.active = user.status !== "1";
+
+          return user;
+        });
+      } catch (error) {
+        this.members = [];
+      } finally {
+        this.fetching = false;
+      }
+    },
+    async toggle(id) {
+      try {
+        const config = {
+          params: this.paging,
+          headers: {
+            Authorization: "Bearer " + localStorage.getItem('ACCESS_TOKEN')
+          }
+        };
+
+        await axiosInstance.post(
+          "/member/activeDeactive.php",
+          { userid: id },
+          config
+        );
+
+        alert("Cập nhật trạng thái thành công!");
+      } catch (error) {
+        console.log(error);
+      } finally {
+        this.getMembers();
+      }
+    }
+  },
+  async mounted() {
+    await this.getMembers();
+  }
+};
+</script>
