@@ -114,7 +114,7 @@ export default {
         const config = {
           params: this.paging,
           headers: {
-            Authorization: "Bearer " + localStorage.getItem('ACCESS_TOKEN')
+            Authorization: "Bearer " + localStorage.getItem(CONFIG_ACCESS_TOKEN)
           }
         };
 

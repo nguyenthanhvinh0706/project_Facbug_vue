@@ -28,6 +28,13 @@
               >
                 Edit
               </button>
+              <button
+                type="button"
+                class="btn btn-outline-danger"
+                @click="deletePost(post.PID)"
+              >
+                Delete
+              </button>
             </td>
           </tr>
         </tbody>
@@ -103,6 +110,28 @@ export default {
     editPost(id) {
       this.$router.push(`/post-edit/${id}`);
     },
+    async deletePost(id) {
+      if (!confirm("Bạn chắc chắn xoá bài viết này?")) {
+        return;
+      }
+
+      try {
+        await axiosInstance.post(
+          "/post/delete.php",
+          {
+            postid: id
+          },
+          {
+            headers: {
+              Authorization:
+                "Bearer " + localStorage.getItem(CONFIG_ACCESS_TOKEN)
+            }
+          }
+        );
+        await this.getPosts();
+        alert("Đã xoá bài viết");
+      } catch (error) {}
+    }
   },
   async mounted() {
     await this.getPosts();

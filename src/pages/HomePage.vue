@@ -27,7 +27,6 @@ export default {
             var tagIndex = to.query.tagIndex;
             this.getListPostHasPaging({tagIndex})
 
-
         }
 
     },

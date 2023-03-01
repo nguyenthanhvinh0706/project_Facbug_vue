@@ -28,6 +28,7 @@ export default {
 	computed:{
 
 		...mapState(['isLoading']),
+		// ...mapActions(['checkLogin']),
 
 		isRenderHeader() {
 			var arrRouter = ['login', 'register'];

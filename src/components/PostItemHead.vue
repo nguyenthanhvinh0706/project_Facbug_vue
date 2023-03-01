@@ -28,14 +28,14 @@
       class="ml-2 badge badge-primary"
       :style="{ cursor: 'pointer' }"
       @click="editPost"
-      >Sửa</span
+      >Edit</span
     >
     <span
       v-if="currentUser && currentUser.USERID === post.USERID"
       class="ml-2 badge badge-danger"
       :style="{ cursor: 'pointer' }"
       @click="deletePost"
-      >Xoá</span
+      >Delete</span
     >
   </div>
 </template>

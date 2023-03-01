@@ -27,6 +27,7 @@
           <button v-on:click="uploadImage" class="ass1-btn ass1-btn-meme">
             Chọn ảnh từ thiết bị
           </button>
+          <!-- ref -->
           <input
             v-on:change="handleUploadImage"
             style="display: none;"
@@ -84,14 +85,23 @@
             ><i class="fa fa-google-plus" aria-hidden="true"></i
           ></a>
         </div>
+
+        <span
+          class="ml-2 badge badge-danger"
+          :style="{ cursor: 'pointer' }"
+          @click.prevent="deletePost"
+          >Xoá bài viết</span
+        >
       </aside>
     </div>
   </div>
 </template>
 
 <script>
-import { mapActions, mapGetters} from "vuex";
+import { mapActions, mapGetters, mapState } from "vuex";
+import { CONFIG_ACCESS_TOKEN } from "../constants";
 import { checkImageFile, checkImageURL } from "../helpers";
+import axiosInstance from "../plugins/axios";
 export default {
   name: "post-upload",
   data() {
@@ -205,6 +215,28 @@ export default {
           this.categories = categoties.map(item => parseInt(item.tag_index));
         }
       });
+    },
+    async deletePost() {
+      if (!confirm("Bạn chắc chắn xoá bài viết này?")) {
+        return;
+      }
+
+      try {
+        await axiosInstance.post(
+          "/post/delete.php",
+          {
+            postid: this.postId
+          },
+          {
+            headers: {
+              Authorization:
+                "Bearer " + localStorage.getItem(CONFIG_ACCESS_TOKEN)
+            }
+          }
+        );
+        alert("Đã xoá bài viết");
+        this.$router.push("/");
+      } catch (error) {}
     }
   },
   async created() {
