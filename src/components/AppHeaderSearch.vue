@@ -12,6 +12,7 @@
 </template>
 
 <script>
+import {SEARCH_WARNING} from "../constants/index"
 export default {
     name: 'app-header-search',
     data() {
@@ -30,7 +31,7 @@ export default {
                 })
                 this.querySearch = '';
             } else {
-                alert('Vui lòng nhập nội dung search');
+                this.$notify(SEARCH_WARNING);
             }
         }
     }

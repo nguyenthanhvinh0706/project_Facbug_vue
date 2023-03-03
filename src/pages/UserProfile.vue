@@ -14,6 +14,7 @@
                         type="text" class="form-control" placeholder="Tên ..." required="">
                     
                     <select
+                    
                         v-bind:value="currentUser.gender"
                         v-on:change="gender = $event.target.value"  
                         class="form-control">
@@ -44,6 +45,7 @@
 <script>
 import {mapGetters} from 'vuex'
 import { mapActions } from 'vuex';
+import { NOTI_PROFILE_COMPLETE } from '../constants/index';
 export default {
     name: 'user-profile',
     data() {
@@ -105,7 +107,7 @@ export default {
                 }
                 this.updateProfile(data).then(res => {
                     if(res.ok){
-                        alert('Đã cập nhật thông tin cá nhân thành công!')
+                        this.$notify(NOTI_PROFILE_COMPLETE)
                     }else{alert(res.error)}
                 })
             }

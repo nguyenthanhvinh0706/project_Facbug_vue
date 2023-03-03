@@ -68,6 +68,7 @@
 <script>
 import { mapActions } from 'vuex';
 import { checkImageFile,checkImageURL  } from '../helpers';
+import {EDIT_ERROR, EDIT_ERROR_COMPLETE, UPLOAD_COMPLETE } from "../constants/index"
 export default {
     name: 'post-upload',
     data() {
@@ -106,7 +107,7 @@ export default {
                 let check = checkImageFile(imageUpload);
 
                 if(!check) {
-                    alert('File tải lên không hợp lệ!');
+                    this.$notify(EDIT_ERROR);
                     return;
                 }
 
@@ -146,14 +147,14 @@ export default {
                     this.createNewPost(data).then(res => {
                         if(res.ok) {
                             this.resetData();
-                            alert('Đăng bài viết thành công!');
+                            this.$notify(UPLOAD_COMPLETE);
                         } else {
                             alert(res.error);
                         }
                     });
-                } else {alert('Vui lòng upload hình ảnh bài viết');
+                } else {this.$notify(EDIT_ERROR);
                 }
-            } else {alert('Vui lòng nhập đầy đủ nội đụng');
+            } else {this.$notify(EDIT_ERROR_COMPLETE);
             }
         }
     }

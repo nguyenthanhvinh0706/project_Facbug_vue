@@ -15,6 +15,7 @@
   
   <script>
   import { mapActions } from 'vuex';
+  import {CMT_COMPLETE, CMT_WARNING} from "../constants/index"
   export default {
     name: 'post-comment-add',
     data() {
@@ -44,14 +45,14 @@
                 }
                 this.addNewComment(data).then(res => {
                     if(res.ok) {
-                        alert('Đăng bình luận thành công!');
+                        this.$notify(CMT_COMPLETE);
                         this.comment = '';
                     } else {
                         alert(res.error);
                     }
                 })
             } else {
-                alert('Dữ liệu nhập vào không đúng quy tắc');
+                this.$notify(CMT_WARNING);
             }
         }
     }

@@ -85,13 +85,6 @@
             ><i class="fa fa-google-plus" aria-hidden="true"></i
           ></a>
         </div>
-
-        <span
-          class="ml-2 badge badge-danger"
-          :style="{ cursor: 'pointer' }"
-          @click.prevent="deletePost"
-          >Xoá bài viết</span
-        >
       </aside>
     </div>
   </div>
@@ -102,6 +95,7 @@ import { mapActions, mapGetters, mapState } from "vuex";
 import { CONFIG_ACCESS_TOKEN } from "../constants";
 import { checkImageFile, checkImageURL } from "../helpers";
 import axiosInstance from "../plugins/axios";
+import {EDIT_COMPLETE, EDIT_ERROR_COMPLETE, EDIT_ERROR, CHECK_FILE} from "../constants/index"
 export default {
   name: "post-upload",
   data() {
@@ -140,7 +134,7 @@ export default {
         let check = checkImageFile(imageUpload);
 
         if (!check) {
-          alert("File tải lên không hợp lệ!");
+          this.$notify(CHECK_FILE);
           return;
         }
 
@@ -185,16 +179,16 @@ export default {
           this.updatePost(data).then(async res => {
             if (res.ok) {
               await this.fetchDataPostDetail();
-              alert("Cập nhật bài viết thành công!");
+              this.$notify(EDIT_COMPLETE);
             } else {
               alert(res.error);
             }
           });
         } else {
-          alert("Vui lòng upload hình ảnh bài viết");
+          this.$notify(EDIT_ERROR);
         }
       } else {
-        alert("Vui lòng nhập đầy đủ nội đụng");
+        this.$notify(EDIT_ERROR_COMPLETE)
       }
     },
     async fetchDataPostDetail() {

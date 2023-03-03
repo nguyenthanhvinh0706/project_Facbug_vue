@@ -22,6 +22,8 @@
 <script>
 import {mapGetters} from 'vuex'
 import {mapActions} from 'vuex'
+import { PASS_C0NFIRM } from '../constants/index' 
+import {PASS_ERROR_C0NFIRM, PASS_TEXT, PASS_ERROR} from '../constants/index' 
 
 export default {
     name: 'change-password',
@@ -59,9 +61,9 @@ export default {
             let{oldPassword,newPassword,reNewPassword } = this;
             if(oldPassword&&newPassword&&reNewPassword) {
                 if(oldPassword == newPassword) {
-                    alert('Mật khẩu cũ không được trùng với mật khẩu mới');
+                    this.$notify(PASS_ERROR);
                 } else if (newPassword != reNewPassword) {
-                    alert('Mật khẩu nhập lại không khớp');
+                    this.$notify(PASS_ERROR_C0NFIRM);
                 } else {
                     let data = {
                         oldPassword,
@@ -70,7 +72,7 @@ export default {
                     }
                     this.changePassword(data).then(res => {
                         if(res.ok) {
-                            alert(res.message);
+                            this.$notify(PASS_C0NFIRM);
                             this.$router.push('/');
                         } else {
                             alert(res.error);
@@ -78,7 +80,7 @@ export default {
                     })
                 }
             } else {
-                alert('Vui lòng nhập đầy đủ thông tin!');
+                this.$notify(PASS_TEXT);
             }
         }
 

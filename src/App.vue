@@ -6,6 +6,7 @@
 				<router-view></router-view>
 			</div>
 		</main>
+		<notifications group="noti" position="bottom right"/>
 		<app-footer v-if="isRenderFooter"/>
 		<loading v-bind:class="{show: isLoading}"/>
 	</div>
@@ -50,10 +51,24 @@ export default {
 	},
 	methods: {
 		...mapActions(['checkLogin']),
+
 	},
+	// mounted() {
+	// 	this.$notify({
+	// 	group: 'noti',
+	// 	type: 'error',
+	// 	title: 'Important message',
+	// 	text: 'Hello user! This is a notification!',
+	// 	});
+	// }
 }
 </script>
 
 <style>
+.notifications{
+	padding-right: 10px;
+	padding-bottom: 10px;
+
+}
 
 </style>

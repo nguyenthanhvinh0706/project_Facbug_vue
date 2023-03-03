@@ -46,6 +46,7 @@ import { mapActions, mapGetters } from "vuex";
 import { CONFIG_ACCESS_TOKEN } from "../constants";
 import { replaceAll } from "../helpers";
 import axiosInstance from "../plugins/axios";
+import { NOTI_DELETE_COMPLETE} from "../constants/index"
 
 export default {
   name: "post-item-head",
@@ -111,7 +112,8 @@ export default {
           }
         );
         this.removePost(this.post.PID);
-        alert("Đã xoá bài viết");
+        // alert("Đã xoá bài viết");
+        this.$notify(NOTI_DELETE_COMPLETE);
       } catch (error) {
         console.log(error);
       }

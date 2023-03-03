@@ -22,6 +22,7 @@
 </template>
 
 <script>
+import {PASS_LOGIN} from "../constants/index"
        
 import {mapActions} from 'vuex'
 export default {
@@ -43,8 +44,10 @@ export default {
             this.login(data).then(res => {
                 if(!res.ok){
                     if(typeof res.error ==='string'){
-                        alert(res.error);
-                    } else{alert(res.error.join(''));}
+                        this.$notify(PASS_LOGIN)
+                    } else{
+                        alert(res.error.join(''));
+                    }
                 }else{
                     this.$router.push('/')
                 }

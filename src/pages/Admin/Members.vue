@@ -52,7 +52,9 @@
 
 <script>
 import { CONFIG_ACCESS_TOKEN } from "../../constants";
+import {STATUS_COMPLETE} from "../../constants/index"
 import axiosInstance from "../../plugins/axios";
+
 
 export default {
   name: "AdminMembers",
@@ -124,7 +126,7 @@ export default {
           config
         );
 
-        alert("Cập nhật trạng thái thành công!");
+         this.$notify(STATUS_COMPLETE);
       } catch (error) {
         console.log(error);
       } finally {
