@@ -122,3 +122,17 @@ export const STATUS_COMPLETE = {
     duration: 2000,
     text: 'Cập nhật trạng thái User thành công!',
 };
+export const LOGIN_COMPLETE = {
+    group: 'noti',
+    type: 'success',
+    title: 'Chào mừng',
+    duration: 2000,
+    text: 'Đăng nhập tài khoản thành công'
+};
+export const REGISTER_COMPLETE = {
+    group: 'noti',
+    type: 'success',
+    title: 'Chúc mừng',
+    duration: 2000,
+    text: 'Bạn đã đăng ký tài khoản thành công'
+};

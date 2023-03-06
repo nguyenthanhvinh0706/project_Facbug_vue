@@ -37,6 +37,9 @@ import PostComments from "../components/PostComments";
 import PostCommentAdd from "../components/PostCommentAdd";
 import { mapActions, mapGetters } from "vuex";
 import { removeVietnameseFromString } from "../helpers";
+import { COLLECTION, db } from "../firebase";
+
+let unsubcribeComments;
 
 export default {
   name: "post-detail",
@@ -76,7 +79,15 @@ export default {
     }
   },
   created() {
-    this.fetchDataPostDetail();
+    unsubcribeComments = db
+      .collection(COLLECTION.POST)
+      .doc(this.postId)
+      .onSnapshot(doc => {
+        this.fetchDataPostDetail();
+      });
+  },
+  destroyed() {
+    unsubcribeComments();
   },
   methods: {
     ...mapActions(["getPostDetailById"]),

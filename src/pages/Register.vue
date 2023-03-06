@@ -26,6 +26,7 @@
 </template>
 
 <script>
+import { REGISTER_COMPLETE} from "../constants/index"
 import {mapActions} from 'vuex'
 export default {
     name: 'register',
@@ -55,7 +56,7 @@ export default {
                         alert(res.error);
                     }else{
                         this.$router.push('/')
-                        alert("đăng ký thành công")
+                        this.$notify( REGISTER_COMPLETE)
                     }
                 })
 

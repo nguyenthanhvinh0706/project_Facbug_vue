@@ -11,6 +11,9 @@
                 class="form-control ttg-border-none"
                 placeholder="https://"
               />
+              <small class="text-danger" v-if="errors.url_image">
+                {{ errors.url_image }}</small
+              >
             </div>
             <div class="form-group">
               <textarea
@@ -19,6 +22,9 @@
                 class="form-control ttg-border-none"
                 placeholder="Mô tả ..."
               ></textarea>
+              <small class="text-danger" v-if="errors.post_content">
+                {{ errors.post_content }}</small
+              >
             </div>
           </form>
           <div class="ass1-section__image" v-on:click="uploadImage">
@@ -47,9 +53,16 @@
           </button>
         </div>
         <div class="ass1-aside__edit-post-head">
-          <span
-            style="display: block; font-weight: bolder; width: 100%; margin-bottom: 10px;"
+          <span style="display: block; font-weight: bolder; width: 100%"
             >Chọn danh mục:</span
+          >
+
+          <small
+            class="text-danger"
+            style="display: block; width: 100%; margin-bottom: 10px;"
+            v-if="errors.categories"
+          >
+            {{ errors.categories }}</small
           >
 
           <label
@@ -85,11 +98,17 @@
             ><i class="fa fa-google-plus" aria-hidden="true"></i
           ></a>
         </div>
+
+        <!-- <span
+          class="ml-2 badge badge-danger"
+          :style="{ cursor: 'pointer' }"
+          @click.prevent="deletePost"
+          >Xoá bài viết</span
+        > -->
       </aside>
     </div>
   </div>
 </template>
-
 <script>
 import { mapActions, mapGetters, mapState } from "vuex";
 import { CONFIG_ACCESS_TOKEN } from "../constants";
@@ -107,7 +126,12 @@ export default {
         objFile: null,
         base64URL: ""
       },
-      categories: []
+      categories: [],
+      errors: {
+        url_image: "",
+        post_content: "",
+        categories: ""
+      }
     };
   },
   computed: {
@@ -163,9 +187,40 @@ export default {
         base64URL: "",
         objFile: null
       };
+      this.errors = Object.assign(
+        {},
+        {
+          url_image: "",
+          post_content: "",
+          categories: ""
+        }
+      );
     },
     async handleEditPost() {
       let { postId, post_content, url_image, categories, obj_image } = this;
+      // Validate
+      this.errors = Object.assign(
+        {},
+        {
+          url_image: "",
+          post_content: "",
+          categories: ""
+        }
+      );
+
+      // Url
+      if (!(await checkImageURL(url_image))) {
+        this.errors.url_image = "File ảnh không hợp lệ (jpg, jpeg, png, gif)";
+      }
+      // Content
+      if (!Boolean(post_content)) {
+        this.errors.post_content = "Nội dung không được để trống";
+      }
+      // Content
+      if (categories.length === 0) {
+        this.errors.categories = "Ít nhất một danh mục";
+      }
+
       if (post_content && categories.length) {
         if (url_image || obj_image.objFile) {
           let data = {
