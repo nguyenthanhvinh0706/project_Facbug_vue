@@ -1,12 +1,14 @@
 import firebase from "firebase/app";
 import "firebase/firestore";
 const firebaseConfig = {
-  apiKey: "AIzaSyDZG2QvVcZ6LnXc6EAXkRyv_tu3bWrBre8",
-  authDomain: "live-comments-37d60.firebaseapp.com",
-  projectId: "live-comments-37d60",
-  storageBucket: "live-comments-37d60.appspot.com",
-  messagingSenderId: "614673446162",
-  appId: "1:614673446162:web:1809547afabd9849126fcb"
+  apiKey: "AIzaSyBf8a5i8CEu1j589vRRnyHq-Q0cssUGBbY",
+  authDomain: "end-project-32b55.firebaseapp.com",
+  databaseURL: "https://end-project-32b55-default-rtdb.asia-southeast1.firebasedatabase.app",
+  projectId: "end-project-32b55",
+  storageBucket: "end-project-32b55.appspot.com",
+  messagingSenderId: "525798068642",
+  appId: "1:525798068642:web:95a8390c1e22ae80cd22fb",
+  measurementId: "G-HXHYLF835P"
 };
 
 // Initialize Firebase
