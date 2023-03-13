@@ -1,5 +1,6 @@
 import firebase from "firebase/app";
 import "firebase/firestore";
+import "firebase/auth";
 const firebaseConfig = {
   apiKey: "AIzaSyBf8a5i8CEu1j589vRRnyHq-Q0cssUGBbY",
   authDomain: "end-project-32b55.firebaseapp.com",
@@ -13,8 +14,7 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = firebase.initializeApp(firebaseConfig);
 export const db = firebase.firestore();
-export const serverTimestamp = () =>
-  firebase.firestore.FieldValue.serverTimestamp();
+export const ggProvider = new firebase.auth.GoogleAuthProvider();
 export const COLLECTION = {
   POST: "posts"
 };

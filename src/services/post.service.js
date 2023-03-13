@@ -1,4 +1,4 @@
-import { COLLECTION, db, serverTimestamp } from "../firebase";
+import { COLLECTION, db} from "../firebase";
 import firebase from "firebase/app"
 
 const getPost = async postId => {
