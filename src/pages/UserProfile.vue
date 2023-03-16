@@ -1,6 +1,10 @@
 <template>
     <div class="ass1-login">
         <div class="ass1-login__content">
+            <!-- <router-link to ="/" class="ass1-logo">
+					Face<span style = "color:#CC0000 ">Bug</span><i style = "color:#CC0000; font-size: 20px;" class="fa fa-bug" aria-hidden="true"></i>
+					</router-link> -->
+                    <br>
             <p style="font-weight: bolder; font-size: 20px;"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> : Chỉnh sửa thông tin cá nhân.</p>
 
             <div class="ass1-login__form">

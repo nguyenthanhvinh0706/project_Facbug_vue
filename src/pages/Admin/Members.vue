@@ -1,23 +1,23 @@
 <template>
   <div class="row">
     <div class="col-lg-12">
-      <br>
-      <h1 style="font-weight: bolder;"><i class="fa fa-users" aria-hidden="true"></i> Thành viên:</h1>
-      <br>
-      <table class="table table-striped">
+      <br><br>
+      <h1 style="font-weight: bolder;"><i class="fa fa-users" aria-hidden="true"></i> Quản lý thành viên.</h1>
+      <br><br>
+      <table style="background-color: white;" class="table table-bordered">
         <thead>
           <tr>
-            <th scope="col">#</th>
+            <!-- <th scope="col">#</th> -->
             <th scope="col"><i class="fa fa-user" aria-hidden="true"></i> ID</th>
             <th scope="col"><i class="fa fa-envelope" aria-hidden="true"></i> Email</th>
-            <th scope="col">Fullname</th>
+            <th scope="col"><i class="fa fa-list" aria-hidden="true"></i> Tên Users</th>
             <th scope="col"><i class="fa fa-male" aria-hidden="true"></i>/<i class="fa fa-female" aria-hidden="true"></i></th>
             <th scope="col"><i class="fa fa-user-times" aria-hidden="true"></i></th>
           </tr>
         </thead>
         <tbody>
           <tr v-for="(member, index) in members" :key="index">
-            <th scope="row">{{ index + 1 }}</th>
+            <!-- <th scope="row">{{ index + 1 }}</th> -->
             <td>{{ member.USERID }}</td>
             <td>{{ member.email }}</td>
             <td>{{ member.fullname }}</td>
@@ -32,6 +32,7 @@
           </tr>
         </tbody>
       </table>
+      <br>
 
       <nav aria-label="Page navigation example">
         <ul class="pagination">

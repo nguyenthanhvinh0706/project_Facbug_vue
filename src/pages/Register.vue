@@ -106,14 +106,12 @@
   
         if (data.email && data.fullname && data.password && data.repassword) {
           try {
-            // Đăng ký với firebase
             const userCredential = await auth().createUserWithEmailAndPassword(
               data.email,
               data.password
             );
             await userCredential.user.sendEmailVerification();
           } catch (error) {
-            // Email đã tồn tại
             if (error.code === "auth/email-already-in-use") {
               alert(`Email ${data.email} đã tồn tại!`);
               return;
@@ -122,18 +120,16 @@
   
           alert("Vui lòng kiểm tra email!");
   
-          // Listener khi user đã click verify mail
           const onIdTokenChangedUnsubscribe = auth().onIdTokenChanged(user => {
             const unsubscribeSetInterval = setTimeout(() => {
               auth().currentUser.reload();
               auth().currentUser.getIdToken(true);
             }, 1000);
   
-            // Nếu đã verify mail sẽ thực hiện call api đăng ký và login
             if (user && user.emailVerified) {
-              clearInterval(unsubscribeSetInterval); // clear interval
+              clearInterval(unsubscribeSetInterval);
               registerAndLogin();
-              return onIdTokenChangedUnsubscribe(); // unsubscribe onIdTokenChanged
+              return onIdTokenChangedUnsubscribe();
             }
           });
         } else {

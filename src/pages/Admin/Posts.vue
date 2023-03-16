@@ -3,22 +3,24 @@
     <div class="col-lg-12
     ">
     <br>
-      <h1 style="font-weight: bolder;"><i class="fa fa-pencil-square" aria-hidden="true"></i> Bài viết của users</h1>
+    <br>
+      <h1 style="font-weight: bolder;"><i class="fa fa-pencil-square" aria-hidden="true"></i> Quản lý bài viết users.</h1>
       <br>
-      <table class="table table-striped">
+      <br>
+      <table style ="background-color: white" class="table table-bordered">
         <thead>
           <tr>
-            <th scope="col">#</th>
+            <!-- <th scope="col">#</th> -->
             <th scope="col"><i class="fa fa-user" aria-hidden="true"></i> ID</th>
-            <th scope="col">Tên</th>
+            <th scope="col"><i class="fa fa-list" aria-hidden="true"></i> Tên Users</th>
             <th scope="col"><i class="fa fa-book" aria-hidden="true"></i> Nội dung</th>
             <th scope="col"><i class="fa fa-calendar" aria-hidden="true"></i> Ngày đăng</th>
-            <th scope="col">Hành động</th>
+            <th scope="col"><i class="fa fa-cog" aria-hidden="true"></i> Hành động</th>
           </tr>
         </thead>
         <tbody>
           <tr v-for="(post, index) in posts" :key="index">
-            <th scope="row">{{ index + 1 }}</th>
+            <!-- <th scope="row">{{ index + 1 }}</th> -->
             <td>{{ post.PID }}</td>
             <td>{{ post.fullname }}</td>
             <td>{{ post.post_content }}</td>
@@ -42,6 +44,7 @@
           </tr>
         </tbody>
       </table>
+      <br>
       <nav aria-label="Page navigation example">
         <ul class="pagination">
           <li class="page-item">

@@ -63,11 +63,10 @@ export default {
         await this.handleLoadMore();
     }
   },
-  // Register event listener khi render
+
   mounted() {
     document.addEventListener("scroll", this.handleScroll);
   },
-  // Remove event listener khi destroy dom
   unmounted() {
     document.removeEventListener("scroll", this.handleScroll);
   }
