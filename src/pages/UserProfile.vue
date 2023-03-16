@@ -1,7 +1,7 @@
 <template>
     <div class="ass1-login">
         <div class="ass1-login__content">
-            <p>Profile</p>
+            <p style="font-weight: bolder; font-size: 20px;"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> : Chỉnh sửa thông tin cá nhân.</p>
 
             <div class="ass1-login__form">
                 <div class="avatar">
@@ -33,7 +33,7 @@
                         class="form-control" cols="30" rows="5" placeholder="Mô tả ngắn ..."></textarea>
                     
                     <div class="ass1-login__send justify-content-center">
-                        <button type="submit" class="ass1-btn">Cập nhật</button>
+                        <button type="submit" class="ass1-btn"><i class="fa fa-upload" aria-hidden="true"></i> Cập nhật</button>
                     </div>
                     
                 </form>

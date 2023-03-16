@@ -4,7 +4,7 @@
         <textarea
           v-model="comment"
           class="form-control ttg-border-none"
-          placeholder="Thêm một bình luận"
+          placeholder="Thêm một bình luận..."
         ></textarea>
       </form>
       <div class="ass1-add-comment__content">
@@ -13,8 +13,8 @@
           v-on:click.prevent="handleAddComment"
           class="ass1-add-comment__btn-save ass1-btn-icon"
           ><span>{{ renderMaxLength }}</span
-          ><i class="icon-Submit_Tick"></i
-        ></a>
+          ><i class="fa fa-commenting-o" aria-hidden="true"></i>
+        </a>
       </div>
     </div>
   </template>

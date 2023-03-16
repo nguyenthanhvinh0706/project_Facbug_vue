@@ -31,7 +31,7 @@
               <img v-bind:src="renderImage" alt="default" />
             </div>
             <button v-on:click="uploadImage" class="ass1-btn ass1-btn-meme">
-              Chọn ảnh từ thiết bị
+              <i class="fa fa-file-image-o" aria-hidden="true"></i>Chọn ảnh từ thiết bị
             </button>
             <!-- ref -->
             <input
@@ -49,14 +49,13 @@
         <aside class="ass1-aside ass1-aside__edit-post">
           <div>
             <button v-on:click="handleUploadPost" class="ass1-btn">
-              Đăng bài
+              Đăng bài 
             </button>
           </div>
           <div class="ass1-aside__edit-post-head">
-            <span style="display: block; font-weight: bolder; width: 100%"
-              >Chọn danh mục:</span
+            <span style="margin-bottom:13px; display: block; font-weight: bolder; width: 100%"
+              >Chọn danh mục (<i class="fa fa-tags" aria-hidden="true"></i>):</span
             >
-  
             <small
               class="text-danger"
               style="display: block; width: 100%; margin-bottom: 10px;"

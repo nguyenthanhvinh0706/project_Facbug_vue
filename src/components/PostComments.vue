@@ -1,7 +1,7 @@
 <template>
     <div class="ass1-comments">
         <div class="ass1-comments__head">
-            <div class="ass1-comments__title">{{ comments.length }} Bình luận:</div>
+            <div class="ass1-comments__title">{{ comments.length }} Bình luận <i class="fa fa-comment" aria-hidden="true"></i> :</div>
             <div class="ass1-comments__options">
                 <span>Sắp xếp theo:</span>
                 <a href="#" class="ass1-comments__btn-upvote ass1-btn-icon"><i class="icon-Upvote"></i></a>

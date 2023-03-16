@@ -16,7 +16,7 @@
             v-if="!isCurrentUser"
             href="#"
             class="ass1-head-user__btn-follow ass1-btn"
-            >Theo dõi</a
+            ><i style="color: #3482e2;" class="icon-Followers"></i>Theo dõi</a
           >
 
           <template v-else>
@@ -26,7 +26,7 @@
                 params: { id: userInfor.USERID }
               }"
               class="ass1-head-user__btn-follow ass1-btn"
-              >Đổi mật khẩu</router-link
+              ><i style="color: #3482e2;" class="fa fa-exchange" aria-hidden="true"></i> Đổi mật khẩu</router-link
             >
             <router-link
               v-bind:to="{
@@ -34,7 +34,7 @@
                 params: { id: userInfor.USERID }
               }"
               class="ass1-head-user__btn-follow ass1-btn"
-              >Sửa thông tin cá nhân</router-link
+              ><i style="color: #3482e2;" class="fa fa-pencil-square-o" aria-hidden="true"></i> Sửa thông tin cá nhân</router-link
             >
             <template v-if="userInfo && userInfo.permission === 'admin'">
               <router-link
@@ -42,30 +42,30 @@
                   name: 'admin-members'
                 }"
                 class="ass1-head-user__btn-follow ass1-btn"
-                >Quản lý members</router-link
+                ><i style="color: #3482e2;" class="fa fa-users" aria-hidden="true"></i> Quản lý members</router-link
               >
               <router-link
                 v-bind:to="{
                   name: 'admin-posts'
                 }"
                 class="ass1-head-user__btn-follow ass1-btn"
-                >Quản lý bài viết</router-link
+                ><i style="color: #3482e2;" class="fa fa-pencil-square" aria-hidden="true"></i> Quản lý bài viết</router-link
               >
             </template>
           </template>
         </div>
         <div class="ass1-head-user__info-statistic">
           <div class="ass1-btn-icon">
-            <i class="icon-Post"></i><span>Bài viết: {{ countPost }}</span>
+            <i class="icon-Post"></i><span class="www">Bài viết: {{ countPost }}</span>
           </div>
           <div class="ass1-btn-icon">
-            <i class="icon-Followers"></i><span>Theo dõi: 0</span>
+            <i class="icon-Followers"></i><span class="uuu">Theo dõi: 0</span>
           </div>
           <div class="ass1-btn-icon">
-            <i class="icon-Following"></i><span>Đang theo dõi: 0</span>
+            <i class="icon-Following"></i><span class="vvv">Đang theo dõi: 0</span>
           </div>
         </div>
-        <p>{{ userInfor.description }}</p>
+        <p class="userInfor_description">{{ userInfor.description }}</p>
       </div>
     </div>
   </div>

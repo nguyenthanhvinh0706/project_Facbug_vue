@@ -5,7 +5,7 @@
         <div class="ass1-comments__content">
             <router-link v-bind:to="getUserLink" class="ass1-comments__name">{{ comment.fullname }} </router-link>
             <span class="ass1-comments__passed">{{ formatTimeCmt }}</span>
-            <p>{{ comment.comment }}</p>
+            <p class="comments_text">{{ comment.comment }}</p>
             
         </div>
     </div>

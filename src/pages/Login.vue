@@ -1,140 +1,140 @@
 <template>
-    <div class="ass1-login">
-      <div class="ass1-login__logo">
-        <router-link to="/" class="ass1-logo"
-          ><span style="font-size: 50px ;"
-            >Face<span style="color:#CC0000 ">Bug</span></span
-          ></router-link
-        >
-      </div>
-      <div class="ass1-login__content">
-        <p><span style="font-size: 17px; font-weight: bold;">Đăng nhập</span></p>
-  
-        <div class="ass1-login__form">
-          <form action="#" v-on:submit.prevent="handleSubmitLogin">
+  <div class="ass1-login">
+    <div class="ass1-login__logo">
+      <router-link to="/" class="ass1-logo"
+        ><span style="font-size: 50px ;"
+          >Face<span style="color:#CC0000 ">Bug</span></span
+        ><i style = "color:#CC0000; font-size: 30px;" class="fa fa-bug" aria-hidden="true"></i></router-link
+      >
+    </div>
+    <div class="ass1-login__content">
+      <p><span style="font-size: 17px; font-weight: bold;"><i class="fa fa-sign-in" aria-hidden="true"></i> Đăng nhập</span></p>
+
+      <div class="ass1-login__form">
+        <form action="#" v-on:submit.prevent="handleSubmitLogin">
+          <input
+            v-model="email"
+            type="text"
+            class="form-control"
+            placeholder="Email"
+            required
+          />
+          <small class="text-danger" v-if="email && !validEmail"
+            >Email không hợp lệ</small
+          >
+          <div class="ass1-input-copy">
             <input
-              v-model="email"
-              type="text"
+              v-model="password"
+              type="password"
               class="form-control"
-              placeholder="Email"
+              placeholder="Mật khẩu"
               required
             />
-            <small class="text-danger" v-if="email && !validEmail"
-              >Email không đúng định dạng</small
-            >
-            <div class="ass1-input-copy">
-              <input
-                v-model="password"
-                type="password"
-                class="form-control"
-                placeholder="Mật khẩu"
-                required
-              />
-            </div>
-            
-  
-            <div class="ass1-login__send">
-              <router-link to="/register">Đăng ký một tài khoản</router-link>
-              <button type="submit" class="ass1-btn">Đăng nhập</button>
-            </div>
-          </form>
-        </div>
+          </div>
 
-        <button class="loginBtn loginBtn--google" @click="loginWithGmail">Đăng nhập với Google</button>
-  
-        <p class="text-danger" v-if="error.length">{{ error }}</p>
+          <div class="ass1-login__send">
+            <router-link to="/register">Đăng ký một tài khoản</router-link>
+            <button type="submit" class="ass1-btn"><i class="fa fa-user" aria-hidden="true"></i>Đăng nhập</button>
+          </div>
+        </form>
       </div>
+
+      <button class="loginBtn loginBtn--google" @click="loginWithGmail">Đăng nhập với Google</button>
+
+      <p class="text-danger" v-if="error.length">{{ error }}</p>
     </div>
-  </template>
+  </div>
+</template>
 
 <script>
-import {PASS_LOGIN, LOGIN_COMPLETE} from "../constants/index"
+
+import {LOGIN_COMPLETE} from "../constants"
 import firebase from "firebase/app";
-import { ggProvider } from "../firebase";
-       
-import {mapActions} from 'vuex'
+import { mapActions } from "vuex";
+import { ggProvider, auth } from "../firebase";
 export default {
-    name: 'login',
-    data(){
-        return{
-            provider: null,
-            error: "",
-            email: '',
-            password:''
-        }
-    },
-    computed: {
+  name: "login",
+  data() {
+    return {
+      provider: null,
+      error: "",
+      email: "",
+      password: ""
+    };
+  },
+  computed: {
     validEmail() {
       return /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/.test(this.email);
     }
   },
-    methods:{
-        ...mapActions(['login', 'register']),
-        handleSubmitLogin(e) {
-            if (!this.validEmail) return;
-            let data = {
-                email:this.email,
-                password: this.password
-            }
+  methods: {
+    ...mapActions(["login", "register"]),
+    
+    handleSubmitLogin(e) {
+      if (!this.validEmail) return;
 
-            this.login(data).then(res => {
-                if(!res.ok){
-                    if(typeof res.error ==='string'){
-                        this.$notify(PASS_LOGIN)
-                    } else{
-                      this.error = res.error.join("");
-                    }
-                }else{
-                    this.$notify(LOGIN_COMPLETE)
-                    this.$router.push('/')
-                }
-            })
-        },
-        async loginWithGmail() {
-          const result = await firebase.auth().signInWithPopup(this.provider);
-          var user = result.user;
-          const { displayName, email, uid } = user;
+      let data = {
+        email: this.email,
+        password: this.password
+      };
 
-          try {
-            let data = {
-              email,
-              password: uid
-            };
-
-            const res = await this.login(data);
-            if (!res.ok) {
-              let dataRegister = {
-                email,
-                fullname: displayName,
-                password: uid,
-                repassword: uid
-              };
-
-              const res = await this.register(dataRegister);
-              if (!res.ok) {
-                alert(res.error);
-              } else {
-                return this.$router.push("/");
-              }
-            } else {
-              return this.$router.push("/");
-            }
-          } catch (error) {
-            alert(error);
+      this.login(data).then(res => {
+        if (!res.ok) {
+          if (typeof res.error === "string") {
+            this.error = res.error;
+          } else {
+            this.error = res.error.join("");
           }
-    }
-        
-      },
-        mounted() {
-          this.provider = ggProvider;
+        } else {
+          this.$notify(LOGIN_COMPLETE)
+          this.$router.push("/");
         }
-        
-}
+      });
+    },
+    async loginWithGmail() {
+      const result = await firebase.auth().signInWithPopup(this.provider);
+      var user = result.user;
+      const { displayName, email, uid } = user;
+
+      // login first, if fail will register and login again
+      try {
+        let data = {
+          email,
+          password: uid
+        };
+
+        const res = await this.login(data);
+        if (!res.ok) {
+          let dataRegister = {
+            email,
+            fullname: displayName,
+            password: uid,
+            repassword: uid
+          };
+
+          const res = await this.register(dataRegister);
+          if (!res.ok) {
+            alert(res.error);
+          } else {
+            return this.$router.push("/");
+          }
+        } else {
+          return this.$router.push("/");
+        }
+      } catch (error) {
+        alert(error);
+      }
+    }
+  },
+  async mounted() {
+    await auth().signOut();
+    this.provider = ggProvider;
+  }
+};
 </script>
 
 <style>
-
-    /* body { padding: 2em; }
+body { padding: 2em; }
     .loginBtn {
       box-sizing: border-box;
       position: relative;
@@ -173,8 +173,6 @@ export default {
     .loginBtn--google:hover,
     .loginBtn--google:focus {
       background: #E74B37;
-    } */
-
-
+    }
 
 </style>

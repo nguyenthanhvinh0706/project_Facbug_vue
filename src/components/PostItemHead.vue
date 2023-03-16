@@ -16,7 +16,7 @@
       <router-link v-else v-bind:to="getUserLink" class="ass1-section__name">{{
         formatFullname
       }}</router-link>
-      <span class="ass1-section__passed">{{ formatTimeAdded }}</span>
+      <span class="ass1-section__passed"><i class="fa fa-calendar" aria-hidden="true"></i> {{ formatTimeAdded }}</span>
     </div>
     <router-link
       v-bind:to="getUserLink"
@@ -28,14 +28,14 @@
       class="ml-2 badge badge-primary"
       :style="{ cursor: 'pointer' }"
       @click="editPost"
-      >Edit</span
+      ><i class="fa fa-pencil-square-o" aria-hidden="true"></i></span
     >
     <span
       v-if="currentUser && currentUser.USERID === post.USERID"
       class="ml-2 badge badge-danger"
       :style="{ cursor: 'pointer' }"
       @click="deletePost"
-      >Delete</span
+      ><i class="fa fa-trash-o" aria-hidden="true"></i></span
     >
   </div>
 </template>

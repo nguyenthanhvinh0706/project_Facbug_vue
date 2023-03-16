@@ -1,0 +1,117 @@
+body.dark {
+    background: #404258;
+    color: #FFFFFF;
+    transition: background 1s;
+}
+
+body.dark .ass1-header {
+    background-color: #6B728E !important;
+}
+body.dark .ass1-content-head__t{
+    color: white !important;
+
+}
+body.dark .user-header{
+    color: white !important;
+}
+body.dark .ass1-section__name{
+    color: white !important;
+}
+body.dark .icon-Favorite_Full{
+    color: white !important;
+}
+body.dark .icon-Comment_Full{
+    color: white !important;
+}
+body.dark .commentCount{
+    color: white !important;
+}
+body.dark .like-count{
+    color: white !important;
+
+}
+body.dark .strong{
+    color: white !important;
+}
+body.dark .ass1-add-comment{
+    background-color: #6B728E !important;
+}
+body.dark .ass1-comments__head{
+    color: white !important;
+}
+
+
+body.dark  > .ass1-section {
+    background-color: #6B728E !important;
+}
+
+body.dark .ass1-section__passed {
+    color: lightgray !important;
+}
+body.dark .ass1-logo {
+    color: white !important;
+}
+body.dark .navigation_nav {
+    color: white !important;
+}
+body.dark .ass1-head-user__name{
+    color: rgb(212, 206, 206) !important;
+}
+body.dark .www {
+    color: rgb(212, 206, 206) !important;
+}
+body.dark .uuu {
+    color: rgb(212, 206, 206) !important;
+}
+body.dark .vvv {
+    color: rgb(212, 206, 206) !important;
+}
+body.dark .ass1-section{
+    background-color: #6B728E !important;
+    color: black !important
+}
+
+body.dark .ass1-section__content {
+    color: white !important;
+}
+body.dark .search-result{
+    color: white !important;
+}
+body.dark .search-result-content{
+    color: white !important;
+}
+
+body.dark .ass1-aside__edit-post-head{
+    color: white !important;
+}
+body.dark .ass1-aside__get-code{
+    color: white !important;
+}
+body.dark .text-center{
+    color: white !important;
+}
+body.dark .icon-Submit_Tick{
+    color: white !important;
+}
+body.dark .ass1-comments__name{
+    color: white !important;
+}
+body.dark .comments_text{
+    color: white !important;
+}
+body.dark .userInfor_description {
+    color: white !important;
+}
+body.dark .dislike-count{
+    color: white !important;
+}
+body.dark .nan{
+    color: white !important;
+}
+
+
+
+body {
+    color: black !important;
+    transition: background 1s;
+}

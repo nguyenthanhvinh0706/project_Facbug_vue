@@ -3,7 +3,7 @@
 		<div class="ass1-header">
 			<div class="container">
 				<router-link to ="/" class="ass1-logo">
-					Face<span style = "color:#CC0000 ">Bug</span>
+					Face<span style = "color:#CC0000 ">Bug</span><i style = "color:#CC0000; font-size: 20px;" class="fa fa-bug" aria-hidden="true"></i>
 					</router-link>
 				
 				<app-navigation />
@@ -13,10 +13,13 @@
 				<router-link to="/upload" class="ass1-header__btn-upload ass1-btn">
 					<i class="icon-Upvote"></i> Đăng bài
 				</router-link>
+				<app-dark-mode />
 
-				<router-link v-if="!isLogin" to="/login" class="ass1-header__btn-upload ass1-btn">Login</router-link>
+				<router-link v-if="!isLogin" to="/login" class="ass1-header__btn-upload ass1-btn"><i class="fa fa-sign-in" aria-hidden="true"></i> Đăng nhập/Đăng ký </router-link>
+				<!-- <router-link v-if="!isLogin" to="/register" class="ass1-header__btn-upload ass1-btn"><i class="fa fa-user-plus" aria-hidden="true"></i>Đăng ký</router-link> -->
 
-				<div v-else-if="currentUser" class="wrapper-user">
+
+				<div  v-else-if="currentUser" class="wrapper-user">
 					<router-link 
 						v-bind:to="{ name: 'user-page', params: { id: currentUser.USERID } }"
 						class="user-header">
@@ -25,7 +28,7 @@
 						</span>
 						<span class="email">{{ currentUser.fullname }}</span>
 					</router-link>
-					<div v-on:click="handleLogout" class="logout">Đăng Xuất</div>
+					<div v-on:click="handleLogout" class="logout"> <i class="fa fa-sign-out" aria-hidden="true"></i>Đăng Xuất</div>
 				</div>
 			</div>
 		</div>
@@ -37,6 +40,7 @@
 import $ from "jquery"
 import AppNavigation from './AppNavigation.vue';
 import AppHeaderSearch from './AppHeaderSearch.vue';
+import AppDarkMode from "./AppDarkMode.vue";
 import {mapGetters} from 'vuex'
 import { mapActions } from "vuex";
 
@@ -44,7 +48,8 @@ export default {
 	name: 'app-header',
 	components: {
 		AppNavigation,
-		AppHeaderSearch
+		AppHeaderSearch,
+		AppDarkMode
 	},
 	mounted() {
 		$(".ass1-header__menu li > a").click(function(e) {
@@ -142,4 +147,5 @@ export default {
 	.ass1-header__btn-upload {
 		margin-right: 10px;
 	}
+
 </style>

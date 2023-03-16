@@ -1,14 +1,16 @@
 <template>
   <div class="ass1-section__footer">
     <a class="ass1-section__btn-like ass1-btn-icon" @click="like"
-      ><i class="icon-Favorite_Full"></i><span>{{ likes }}</span></a
+      ><i class="fa fa-thumbs-o-up" aria-hidden="true"></i><span class="like-count">{{ likes }}</span></a
+    >
+    <a class="ass1-section__btn-like ass1-btn-icon" @click="dislike"
+      ><i class="fa fa-thumbs-o-down" aria-hidden="true"></i><span class="dislike-count">{{ dislikes }}</span></a
     >
     <router-link
       v-bind:to="{ name: 'post-detail', params: { id: this.post.PID } }"
       href="#"
       class="ass1-section__btn-comment ass1-btn-icon"
-      ><i class="icon-Comment_Full"></i
-      ><span>{{ commentCount }}</span></router-link
+      ><i class="fa fa-comment" aria-hidden="true"></i><span class="commentCount">{{ commentCount }}</span></router-link
     >
   </div>
 </template>
@@ -36,6 +38,13 @@ export default {
       let total = 0;
       if (this.postDetails && this.postDetails.likes)
         total = this.postDetails.likes.length;
+
+      return total;
+    },
+    dislikes() {
+      let total = 0;
+      if (this.postDetails && this.postDetails.dislikes)
+        total = this.postDetails.dislikes.length;
 
       return total;
     }
@@ -71,11 +80,48 @@ export default {
         this.$router.push("/login");
       }
     },
+    async dislike() {
+      if (this.isLogin) {
+        const postId = this.post.PID;
+        const userId = this.currentUser.USERID.toString();
+
+        // add dislike
+        if (this.postDetails && !this.postDetails.dislikes.includes(userId)) {
+          await PostService.dislikePost({
+            postId,
+            userId
+          });
+
+          this.postDetails.dislikes.push(userId);
+        }
+        // unlike
+        else {
+          await PostService.undislikePost({
+            postId,
+            userId
+          });
+
+          const index = this.postDetails.dislikes.findIndex(
+            item => item === userId
+          );
+          this.postDetails.dislikes.splice(index, 1);
+        }
+      } else {
+        this.$router.push("/login");
+      }
+    },
     async getPostDetails() {
       this.postDetails = (await PostService.getPost(this.post.PID)).data();
       if (!this.postDetails)
         this.postDetails = {
           likes: []
+        };
+    },
+    async getPostDetails() {
+      this.postDetails = (await PostService.getPost(this.post.PID)).data();
+      if (!this.postDetails)
+        this.postDetails = {
+          dislikes: []
         };
     }
   },

@@ -1,7 +1,7 @@
 <template>
     <div class="ass1-login">
         <div class="ass1-login__content">
-            <p> <span style="font-weight: bolder; font-size: 20px;">Đổi mật khẩu</span></p>
+            <p> <span style="font-weight: bolder; font-size: 20px;"><i class="fa fa-unlock-alt" aria-hidden="true"></i> Đổi mật khẩu</span></p>
             <div class="ass1-login__form">
                 <form action="#" v-on:submit.prevent="handleChangePassword">
                     <input v-model="oldPassword"
@@ -11,7 +11,7 @@
                     <input v-model="reNewPassword"
                         type="password" class="form-control" placeholder="Xác nhận mật khẩu mới" required="">
                     <div class="ass1-login__send justify-content-center">
-                        <button type="submit" class="ass1-btn">Gửi</button>
+                        <button type="submit" class="ass1-btn"><i class="fa fa-paper-plane" aria-hidden="true"></i> Gửi</button>
                     </div>
                 </form>
             </div>

@@ -8,7 +8,7 @@
         <div class="ass1-section">
           <post-item v-bind:post="getDataPostDetail.post" />
           <div class="list-categories">
-            <h5><strong>Danh mục: </strong></h5>
+            <h5 class="strong"><strong>Danh mục (<i class="fa fa-tags" aria-hidden="true"></i>): </strong></h5>
             <ul>
               <li v-for="item in matchedCategories" :key="item.TAG_ID">
                 <router-link v-bind:to="getLinkCategory(item)">{{

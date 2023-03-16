@@ -2,7 +2,7 @@
     <nav>
         <ul class="ass1-header__menu">
             <li>
-                <a href="javascript:void(0)"><span style=" font-weight:bold">Danh mục</span></a>
+                <a href="javascript:void(0)"><span class="navigation_nav" style=" font-weight:bold"><i class="fa fa-list-alt" aria-hidden="true"></i> Danh mục</span></a>
                 <div class="ass1-header__nav" style="display: none;">
                     <div class="container">
                         <ul>

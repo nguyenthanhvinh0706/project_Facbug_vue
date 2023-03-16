@@ -1,8 +1,8 @@
 <template>
     <div class="search-page">
         <div class="search-info">
-            <h3>Từ khóa tìm kiểm: <strong>{{ query }}</strong></h3>
-            <p>Tìm kiếm được ({{ this.listPostSearch.length }}) kết quả</p>
+            <h3 class="search-result">Từ khóa <i class="fa fa-key" aria-hidden="true"></i> tìm kiểm: <strong>{{ query }}</strong></h3>
+            <p class = "search-result-content">Tìm kiếm được <i class="fa fa-search" aria-hidden="true"></i> ({{ this.listPostSearch.length }}) kết quả:</p>
         </div>
         <div 
             v-if="listPostSearch && listPostSearch.length"

@@ -34,6 +34,28 @@ const likePost = async (payload = { postId: "", userId: "" }) => {
       { merge: true }
     );
 };
+const undislikePost = async (payload = { postId: "", userId: "" }) => {
+  return await db
+    .collection(COLLECTION.POST)
+    .doc(payload.postId)
+    .set(
+      {
+        dislikes: firebase.firestore.FieldValue.arrayRemove(payload.userId)
+      },
+      { merge: true }
+    );
+};
+const dislikePost = async (payload = { postId: "", userId: "" }) => {
+  return await db
+    .collection(COLLECTION.POST)
+    .doc(payload.postId)
+    .set(
+      {
+        dislikes: firebase.firestore.FieldValue.arrayUnion(payload.userId)
+      },
+      { merge: true }
+    );
+};
 const unlikePost = async (payload = { postId: "", userId: "" }) => {
   return await db
     .collection(COLLECTION.POST)
@@ -45,10 +67,13 @@ const unlikePost = async (payload = { postId: "", userId: "" }) => {
       { merge: true }
     );
 };
-
 export const PostService = {
   addComment,
   likePost,
   unlikePost,
-  getPost
+  getPost,
+  dislikePost,
+  undislikePost
+  
+
 };

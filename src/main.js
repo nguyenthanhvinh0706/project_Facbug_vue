@@ -1,5 +1,6 @@
 import './plugins';
 import './assets/style.css'
+import "./assets/dark-mode.css";
 import Vue from 'vue'
 import App from './App.vue'
 import router from './router';

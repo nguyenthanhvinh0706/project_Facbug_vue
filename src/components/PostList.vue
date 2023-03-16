@@ -5,14 +5,9 @@
       v-bind:key="item.PID"
       v-bind:post="item"
     />
-    <!-- <button
-      v-on:click="handleLoadMore"
-      v-if="getListPost && getListPost.length"
-      class="load-more ass1-btn"
-    >
-      <span>Xem thêm</span>
-    </button> -->
-    <h3 v-if="!getListPost.length" style="font-size: 25px; font-weight: bold ">Danh Sách Rỗng</h3>
+    <h3 class="nan" v-if="!getListPost.length" style="font-size: 25px; font-weight: bold ">Chưa có bài viết nào thuộc danh mục này...</h3>
+    <br>
+    <h4 v-if="!getListPost.length">Nếu bạn có ý tưởng bài viết cho danh mục này, xin hãy vui lòng đóng góp <router-link to="/upload">tại đây</router-link> để diễn đàn thêm phong phú.</h4>
   </div>
 </template>
 
