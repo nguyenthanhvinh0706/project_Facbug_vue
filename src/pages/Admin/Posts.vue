@@ -1,16 +1,19 @@
 <template>
   <div class="row">
-    <div class="col-lg-8">
-      <h1>Bài viết của users</h1>
+    <div class="col-lg-12
+    ">
+    <br>
+      <h1 style="font-weight: bolder;"><i class="fa fa-pencil-square" aria-hidden="true"></i> Bài viết của users</h1>
+      <br>
       <table class="table table-striped">
         <thead>
           <tr>
             <th scope="col">#</th>
-            <th scope="col">ID</th>
-            <th scope="col">Fullname</th>
-            <th scope="col">Content</th>
-            <th scope="col">Post date</th>
-            <th scope="col">Action</th>
+            <th scope="col"><i class="fa fa-user" aria-hidden="true"></i> ID</th>
+            <th scope="col">Tên</th>
+            <th scope="col"><i class="fa fa-book" aria-hidden="true"></i> Nội dung</th>
+            <th scope="col"><i class="fa fa-calendar" aria-hidden="true"></i> Ngày đăng</th>
+            <th scope="col">Hành động</th>
           </tr>
         </thead>
         <tbody>
@@ -26,14 +29,14 @@
                 class="btn btn-outline-primary"
                 @click="editPost(post.PID)"
               >
-                Edit
+              <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
               </button>
               <button
                 type="button"
                 class="btn btn-outline-danger"
                 @click="deletePost(post.PID)"
               >
-                Delete
+              <i class="fa fa-trash-o" aria-hidden="true"></i>
               </button>
             </td>
           </tr>
@@ -43,12 +46,12 @@
         <ul class="pagination">
           <li class="page-item">
             <a class="page-link" href="#" @click="getPosts(paging.currPage - 1)"
-              >Previous</a
+              ><i class="fa fa-caret-square-o-left" aria-hidden="true"></i><span style="font-weight: bolder;"> Trước</span></a
             >
           </li>
           <li class="page-item">
             <a class="page-link" href="#" @click="getPosts(paging.currPage + 1)"
-              >Next</a
+              ><span style="font-weight: bolder;">Sau</span> <i class="fa fa-caret-square-o-right" aria-hidden="true"></i></a
             >
           </li>
         </ul>

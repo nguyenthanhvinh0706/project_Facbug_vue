@@ -16,7 +16,7 @@
       <router-link v-else v-bind:to="getUserLink" class="ass1-section__name">{{
         formatFullname
       }}</router-link>
-      <span class="ass1-section__passed"><i class="fa fa-calendar" aria-hidden="true"></i> {{ formatTimeAdded }}</span>
+      <span class="ass1-section__passed"><i class="fa fa-calendar" aria-hidden="true"></i> : {{ formatTimeAdded }}</span>
     </div>
     <router-link
       v-bind:to="getUserLink"

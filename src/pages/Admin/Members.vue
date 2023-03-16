@@ -1,16 +1,18 @@
 <template>
   <div class="row">
-    <div class="col-lg-8">
-      <h1>Thành viên</h1>
+    <div class="col-lg-12">
+      <br>
+      <h1 style="font-weight: bolder;"><i class="fa fa-users" aria-hidden="true"></i> Thành viên:</h1>
+      <br>
       <table class="table table-striped">
         <thead>
           <tr>
             <th scope="col">#</th>
-            <th scope="col">ID</th>
-            <th scope="col">Email</th>
+            <th scope="col"><i class="fa fa-user" aria-hidden="true"></i> ID</th>
+            <th scope="col"><i class="fa fa-envelope" aria-hidden="true"></i> Email</th>
             <th scope="col">Fullname</th>
-            <th scope="col">Gender</th>
-            <th scope="col">Khoá</th>
+            <th scope="col"><i class="fa fa-male" aria-hidden="true"></i>/<i class="fa fa-female" aria-hidden="true"></i></th>
+            <th scope="col"><i class="fa fa-user-times" aria-hidden="true"></i></th>
           </tr>
         </thead>
         <tbody>
