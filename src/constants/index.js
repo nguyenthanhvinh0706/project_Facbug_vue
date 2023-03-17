@@ -136,3 +136,17 @@ export const REGISTER_COMPLETE = {
     duration: 2000,
     text: 'Bạn đã đăng ký tài khoản thành công'
 };
+export const REGISTER_ERORR = {
+    group: 'noti',
+    type: 'error',
+    title: 'Có lỗi',
+    duration: 2000,
+    text: 'Email đăng ký đã tồn tại, vui lòng đăng ký email khác!'
+};
+export const MAIL_VERIFY = {
+    group: 'noti',
+    type: 'warn',
+    title: 'Thông báo',
+    duration: 2000,
+    text: 'Vui lòng check Email để xác thực đăng ký tài khoản thành công!'
+};

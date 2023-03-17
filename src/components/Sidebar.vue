@@ -3,7 +3,7 @@
       <div class="ass1-content-head__t">
           <div><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Bài viết gần đây của bạn.</div>
       </div>
-      <div v-if="!isLogin">Vui lòng đăng nhập để xem nội dung này 
+      <div class="hic_key" v-if="!isLogin">Vui lòng đăng nhập để xem nội dung này 
           <router-link to="/login">Đăng nhập</router-link>
       </div>
       <div v-else-if="isLogin && getListPostOfCurrentUser && getListPostOfCurrentUser.length">

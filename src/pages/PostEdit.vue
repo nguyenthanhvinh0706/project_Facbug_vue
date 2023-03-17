@@ -11,9 +11,9 @@
                 class="form-control ttg-border-none"
                 placeholder="https://"
               />
-              <small class="text-danger" v-if="errors.url_image">
+              <!-- <small class="text-danger" v-if="errors.url_image">
                 {{ errors.url_image }}</small
-              >
+              > -->
             </div>
             <div class="form-group">
               <textarea
@@ -31,6 +31,7 @@
             <img v-bind:src="renderImage" alt="default" />
           </div>
           <button v-on:click="uploadImage" class="ass1-btn ass1-btn-meme">
+            <i class="fa fa-file-image-o" aria-hidden="true"></i> 
             Chọn ảnh từ thiết bị
           </button>
           <!-- ref -->
@@ -53,9 +54,9 @@
           </button>
         </div>
         <div class="ass1-aside__edit-post-head">
-          <span style="display: block; font-weight: bolder; width: 100%"
-            >Chọn danh mục:</span
-          >
+          <span style="margin-bottom:13px; display: block; font-weight: bolder; width: 100%"
+            >Chọn danh mục(<i class="fa fa-tags" aria-hidden="true"></i>) :</span
+          > 
 
           <small
             class="text-danger"
@@ -128,7 +129,7 @@ export default {
       },
       categories: [],
       errors: {
-        url_image: "",
+        // url_image: "",
         post_content: "",
         categories: ""
       }
@@ -140,9 +141,10 @@ export default {
       return this.$store.state.post.categories;
     },
     renderImage() {
-      if (this.obj_image.base64URL) return this.obj_image.base64URL;
-      else if (this.url_image) return this.url_image;
-      return "/dist/images/no_image_available.jpg";
+      if(this.url_image) return this.url_image;
+            else if (this.obj_image.base64URL) return this.obj_image.base64URL;
+
+            return '/dist/images/no_image_available.jpg';
     }
   },
 
@@ -190,7 +192,7 @@ export default {
       this.errors = Object.assign(
         {},
         {
-          url_image: "",
+          // url_image: "",
           post_content: "",
           categories: ""
         }
@@ -202,16 +204,16 @@ export default {
       this.errors = Object.assign(
         {},
         {
-          url_image: "",
+          // url_image: "",
           post_content: "",
           categories: ""
         }
       );
 
       // Url
-      if (!(await checkImageURL(url_image))) {
-        this.errors.url_image = "File ảnh không hợp lệ (jpg, jpeg, png, gif)";
-      }
+      // if (!(await checkImageURL(url_image))) {
+      //   this.errors.url_image = "File ảnh không hợp lệ (jpg, jpeg, png, gif)";
+      // }
       // Content
       if (!Boolean(post_content)) {
         this.errors.post_content = "Nội dung không được để trống";

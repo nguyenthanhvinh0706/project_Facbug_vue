@@ -11,9 +11,9 @@
                   class="form-control ttg-border-none"
                   placeholder="https://"
                 />
-                <small class="text-danger" v-if="errors.url_image">
+                <!-- <small class="text-danger" v-if="errors.url_image">
                   {{ errors.url_image }}</small
-                >
+                > -->
               </div>
               <div class="form-group">
                 <textarea
@@ -118,7 +118,7 @@ export default {
             },
             categories: [],
             errors: {
-                url_image: "",
+                // url_image: "",
                 post_content: "",
                 categories: ""
             }
@@ -130,8 +130,9 @@ export default {
             return this.$store.state.post.categories
         },
         renderImage() {
-            if (this.obj_image.base64URL) return this.obj_image.base64URL;
-            else if(this.url_image) return this.url_image;
+          if(this.url_image) return this.url_image;
+            else if (this.obj_image.base64URL) return this.obj_image.base64URL;
+
             return '/dist/images/no_image_available.jpg';
         }
         
@@ -178,30 +179,30 @@ export default {
             this.errors = Object.assign(
                 {},
                 {
-                url_image: "",
+                // url_image: "",
                 post_content: "",
                 categories: ""
                 }
             );
 
         },
-        async handleUploadPost() {
+      async handleUploadPost() {
       let { post_content, url_image, categories, obj_image } = this;
 
       // Validate
       this.errors = Object.assign(
         {},
         {
-          url_image: "",
+          // url_image: "",
           post_content: "",
           categories: ""
         }
       );
 
       // Url
-      if (!(await checkImageURL(url_image))) {
-        this.errors.url_image = "Định dạng hình ảnh không hợp lệ (file upload: jpg, jpeg, png, gif)";
-      }
+      // if (!(await checkImageURL(url_image))) {
+      //   this.errors.url_image = "Định dạng hình ảnh không hợp lệ (file upload: jpg, jpeg, png, gif)";
+      // }
       // Content
       if (!Boolean(post_content)) {
         this.errors.post_content = "Nội dung không được để trống";

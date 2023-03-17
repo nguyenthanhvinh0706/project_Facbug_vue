@@ -40,7 +40,8 @@
       </div>
 
       <button class="loginBtn loginBtn--google" @click="loginWithGmail">Đăng nhập với Google</button>
-
+      <br>
+      <br>
       <p class="text-danger" v-if="error.length">{{ error }}</p>
     </div>
   </div>

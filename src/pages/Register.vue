@@ -26,7 +26,7 @@
               required
             />
             <small class="text-danger" v-if="email && !validEmail"
-              >Email is invalid</small
+              >Email không đúng định dạng</small
             >
             <input
               v-model="password"
@@ -45,7 +45,7 @@
             <small
               class="text-danger"
               v-if="password && repassword && !validPassword"
-              >Password is not matched</small
+              >Mật khẩu nhập lại không khớp!</small
             >
             <div class="ass1-login__send">
               <router-link to="/login">Đăng nhập</router-link>
@@ -59,7 +59,7 @@
   
   <script>
   import { mapActions } from "vuex";
-  import {REGISTER_COMPLETE} from "../constants"
+  import {REGISTER_COMPLETE, REGISTER_ERORR,MAIL_VERIFY } from "../constants"
   import { ggProvider, auth } from "../firebase";
   
   export default {
@@ -113,12 +113,12 @@
             await userCredential.user.sendEmailVerification();
           } catch (error) {
             if (error.code === "auth/email-already-in-use") {
-              alert(`Email ${data.email} đã tồn tại!`);
+              this.$notify(REGISTER_ERORR);
               return;
             }
           }
   
-          alert("Vui lòng kiểm tra email!");
+          this.$notify(MAIL_VERIFY);
   
           const onIdTokenChangedUnsubscribe = auth().onIdTokenChanged(user => {
             const unsubscribeSetInterval = setTimeout(() => {
