@@ -16,7 +16,6 @@
 				<app-dark-mode />
 
 				<router-link v-if="!isLogin" to="/login" class="ass1-header__btn-upload ass1-btn"><i class="fa fa-sign-in" aria-hidden="true"></i> Đăng nhập/Đăng ký </router-link>
-				<!-- <router-link v-if="!isLogin" to="/register" class="ass1-header__btn-upload ass1-btn"><i class="fa fa-user-plus" aria-hidden="true"></i>Đăng ký</router-link> -->
 
 
 				<div  v-else-if="currentUser" class="wrapper-user">
